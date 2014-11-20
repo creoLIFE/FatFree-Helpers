@@ -32,7 +32,7 @@ class Url {
    * @return [string]
    */
     public function get( $routeName, $params = array() ){
-        $u = F3::get("ALIASES.$routeName");
+        $u = $this->f3->get("ALIASES.$routeName");
         foreach( $params as $k=>$v ){
             if( strpos($u, "@$k") ){
               $u = str_replace("@$k", $v, $u);
