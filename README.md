@@ -1,7 +1,7 @@
 FatFree-Helpers
 ===============
 
-FatFree Helpers to simplify your work ;)
+FatFree Helpers to simplify your work with FatFree Framework ;)
 
 
 ### URL Helper
