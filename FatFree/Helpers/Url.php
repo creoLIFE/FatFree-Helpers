@@ -32,10 +32,15 @@ class Url {
    * @return [string]
    */
     public function get( $routeName, $params = array() ){
-        $u = $this->f3->get("ALIASES.$routeName");
+        $u = F3::get("ALIASES.$routeName");
         foreach( $params as $k=>$v ){
-            $u = str_replace("@$k", $v, $u);
+            if( strpos($u, "@$k") ){
+              $u = str_replace("@$k", $v, $u);
+            }
         }
-        return $u ? $u : '#';
+        if( strpos($u, "@") ){
+          Throw new \Exception("You must provide valid parameters to route '$routeName'!");
+        }
+        return $u && !strpos($u, "@") ? $u : '#';
     }
 }
