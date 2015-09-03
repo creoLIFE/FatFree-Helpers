@@ -21,6 +21,6 @@
     "require": {
         "php"                   : ">=5.3.0",
         "phpunit/phpunit"       : "4.3.*",
-        "bcosca/fatfree"        : "3.3.0"
+        "bcosca/fatfree"        : "3.4.*"
     }
 }
