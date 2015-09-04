@@ -58,6 +58,16 @@ class ModelMethodsHelper
      */
     public function getModelName()
     {
+        $n = (string)get_class($this);
+        return substr($n,-6) == 'Model' ? substr($n,0,strlen($n)-5) : $n;
+    }
+
+    /**
+     * Method return model name
+     * @return array
+     */
+    public function getModelFullName()
+    {
         return (string)get_class($this);
     }
 
