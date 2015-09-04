@@ -36,7 +36,7 @@ class ModelMethodsHelper
 
     /**
      * Method return model varibles as JSON
-     * @return array
+     * @return string|JSON
      */
     public function toJson()
     {
@@ -45,7 +45,7 @@ class ModelMethodsHelper
 
     /**
      * Method return namespace of model
-     * @return array
+     * @return string
      */
     public function getNamespace()
     {
@@ -54,17 +54,17 @@ class ModelMethodsHelper
 
     /**
      * Method return model name
-     * @return array
+     * @return string
      */
     public function getModelName()
     {
         $n = (string)get_class($this);
-        return substr($n,-6) == 'Model' ? substr($n,0,strlen($n)-5) : $n;
+        return substr($n, -6) == 'Model' ? substr($n, 0, strlen($n) - 5) : $n;
     }
 
     /**
      * Method return model name
-     * @return array
+     * @return string
      */
     public function getModelFullName()
     {
