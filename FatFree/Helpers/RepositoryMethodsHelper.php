@@ -11,30 +11,60 @@ namespace FatFree\Helpers;
 class RepositoryMethodsHelper
 {
     /**
-     * Method return repository result as array
+     * @var mixed $output - output data
+     */
+    private $output;
+
+    /**
+     * @return mixed
+     */
+    public function getOutput()
+    {
+        return $this->output;
+    }
+
+    /**
+     * @param mixed $output
+     */
+    public function setOutput($output)
+    {
+        $this->output = $output;
+    }
+
+    /**
+     * Class constructor
+     * @return void
+     */
+    public function __construct($output)
+    {
+        $this->setOutput($output);
+    }
+
+    /**
+     * Method return output result as array
      * @return array
      */
     public function toArray()
     {
-        return get_object_vars($this);
+        return get_object_vars($this->getOutput());
     }
 
     /**
-     * Method return repository result as JSON
+     * Method return output result as JSON
      * @return JSON
      */
     public function toJson()
     {
-        return json_encode($this);
+        return json_encode($this->getOutput());
     }
 
     /**
-     * Method return repository iterator as array
+     * Method return output iterator as array
      * @return array
      */
     public function asIteratorToArray()
     {
-        return iterator_to_array($this);
+        return iterator_to_array($this->getOutput());
     }
 
 }
