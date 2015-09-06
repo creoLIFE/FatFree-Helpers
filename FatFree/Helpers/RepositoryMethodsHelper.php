@@ -16,7 +16,7 @@ class RepositoryMethodsHelper
      */
     public function toArray()
     {
-        return (array)get_object_vars($this);
+        return get_object_vars($this);
     }
 
     /**
@@ -27,5 +27,14 @@ class RepositoryMethodsHelper
     {
         return json_encode($this);
     }
-    
+
+    /**
+     * Method return repository iterator as array
+     * @return array
+     */
+    public function asIteratorToArray()
+    {
+        return iterator_to_array($this);
+    }
+
 }
