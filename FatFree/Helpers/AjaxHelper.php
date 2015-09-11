@@ -16,11 +16,15 @@ class AjaxHelper
      */
     public static function isAjax()
     {
-        return (
-        isset($_SERVER['HTTP_X_REQUESTED_WITH'])
-        && ($_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest')
-        && $_SERVER['sys_domain'] == Zend_Registry::get('domain')
-            ? true : (Zend_Registry::get('appEnv') == 'production' ? false : true)
+        return (boolean)(
+
+        \F3::get('ENV') !== 'production' ? true :
+
+            isset($_SERVER['HTTP_X_REQUESTED_WITH'])
+            && ($_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest')
+            && $_SERVER['host'] == \F3::get('creoLAB.domain')
+                ? true : false
+
         );
     }
 
