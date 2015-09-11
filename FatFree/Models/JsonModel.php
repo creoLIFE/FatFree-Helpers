@@ -10,7 +10,7 @@ namespace FatFree\Models;
 
 use FatFree\Helpers\ModelMethodsHelper;
 
-class Json
+class JsonModel
 {
     /*
      * @var integer $status - response status

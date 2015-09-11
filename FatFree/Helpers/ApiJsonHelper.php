@@ -7,7 +7,7 @@
  */
 namespace FatFree\Helpers;
 
-use FatFree\Models\Json;
+use FatFree\Models\JsonModel;
 
 class ApiJsonHelper
 {
@@ -34,7 +34,7 @@ class ApiJsonHelper
      */
     public function asJson()
     {
-        $json = new Json();
+        $json = new JsonModel();
         $json->data = self::asArray();
         $json->status = empty($json->data) ? 204 : 200;
 
