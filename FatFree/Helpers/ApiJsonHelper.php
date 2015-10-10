@@ -36,7 +36,7 @@ class ApiJsonHelper
     {
         $json = new JsonModel();
         $json->data = self::asArray();
-        $json->status = empty($json->data) ? 204 : 200;
+        $json->status = $json->data ? 204 : 200;
 
         return json_encode($json);
     }
