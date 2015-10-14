@@ -22,7 +22,7 @@ class AjaxHelper
 
             isset($_SERVER['HTTP_X_REQUESTED_WITH'])
             && ($_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest')
-            && $_SERVER['host'] == \F3::get('creoLAB.domain')
+            && $_SERVER['HTTP_HOST'] == \F3::get('creoLAB.domain')
                 ? true : false
 
         );
