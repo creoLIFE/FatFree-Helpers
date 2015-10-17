@@ -10,7 +10,7 @@ namespace FatFree\Helpers;
 /**
  * Methods for safe LIKE querying.
  */
-trait LikeQueryHelpers
+trait OdmLikeQuery
 {
     /**
      * Format a value that can be used as a parameter for a DQL LIKE search.
