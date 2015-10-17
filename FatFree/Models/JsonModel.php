@@ -27,6 +27,10 @@ class JsonModel
      */
     public $data;
 
+    /*
+     * @var string $msg - message
+     */
+    public $msg;
 
     /**
      * @param mixed $data
@@ -74,6 +78,22 @@ class JsonModel
     public function getStatus()
     {
         return $this->status;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getMsg()
+    {
+        return $this->msg;
+    }
+
+    /**
+     * @param mixed $msg
+     */
+    public function setMsg($msg)
+    {
+        $this->msg = $msg;
     }
 
 }
