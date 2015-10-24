@@ -112,7 +112,9 @@ class CsvParser
                         call_user_func($callback, $row);
                     }
                     else{
-                        $out[] = $row;
+                        if( $row != '' ){
+                            $out[] = $row;
+                        }
                     }
                 }
                 $i++;
