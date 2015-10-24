@@ -85,7 +85,7 @@ class CsvParser
         $out = array();
         $i = 0;
         if (($handle = fopen($csvFile, "r")) !== FALSE) {
-            while (($row = fgetcsv($handle, 1000, ",")) !== FALSE) {
+            while (($row = fgetcsv($handle, 1000, $this->getDelimeter())) !== FALSE) {
                 if ($i > $this->getOffset()) {
                     if( is_callable($callback)){
                         call_user_func($callback, $row);
