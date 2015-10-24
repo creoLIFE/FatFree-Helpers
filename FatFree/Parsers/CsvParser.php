@@ -25,6 +25,11 @@ class CsvParser
     */
     private $inputEncoding = 'utf-8';
 
+    /*
+     * @var integer $packetSize - setup read packet size
+    */
+    private $packetSize = 2048;
+
     /**
      * @return string
      */
@@ -74,6 +79,22 @@ class CsvParser
     }
 
     /**
+     * @return int
+     */
+    public function getPacketSize()
+    {
+        return $this->packetSize;
+    }
+
+    /**
+     * @param int $packetSize
+     */
+    public function setPacketSize($packetSize)
+    {
+        $this->packetSize = $packetSize;
+    }
+
+    /**
      * Method will parse CSV data file
      * @param string $csvFile - CSV file/URL with data
      * @param string $tmpFileName - tmp file name
@@ -85,7 +106,7 @@ class CsvParser
         $out = array();
         $i = 0;
         if (($handle = fopen($csvFile, "r")) !== FALSE) {
-            while (($row = fgetcsv($handle, 1000, $this->getDelimeter())) !== FALSE) {
+            while (($row = fgetcsv($handle, $this->getPacketSize(), $this->getDelimeter())) !== FALSE) {
                 if ($i > $this->getOffset()) {
                     if( is_callable($callback)){
                         call_user_func($callback, $row);
