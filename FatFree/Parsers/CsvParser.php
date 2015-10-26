@@ -30,6 +30,16 @@ class CsvParser
     */
     private $packetSize = 2048;
 
+    /*
+     * @var string $stringEnclosure - string enclosure
+    */
+    private $stringEnclosure = '"';
+
+    /*
+     * @var string $stringEscape - string escape
+    */
+    private $stringEscape = '\\';
+
     /**
      * @return string
      */
@@ -95,24 +105,56 @@ class CsvParser
     }
 
     /**
+     * @return string
+     */
+    public function getStringEnclosure()
+    {
+        return $this->stringEnclosure;
+    }
+
+    /**
+     * @param string $stringEnclosure
+     */
+    public function setStringEnclosure($stringEnclosure)
+    {
+        $this->stringEnclosure = $stringEnclosure;
+    }
+
+    /**
+     * @return string
+     */
+    public function getStringEscape()
+    {
+        return $this->stringEscape;
+    }
+
+    /**
+     * @param string $stringEscape
+     */
+    public function setStringEscape($stringEscape)
+    {
+        $this->stringEscape = $stringEscape;
+    }
+
+    /**
      * Method will parse CSV data file
      * @param string $csvFile - CSV file/URL with data
-     * @param string $tmpFileName - tmp file name
-     * @param function $callback - callback function
-     * @return mixed
+     * @param string $csvFile - tmp file name
+     * @param callable $callback - callback function
+     * @return array
      */
     public function parse($csvFile, callable $callback = null)
     {
         $out = array();
         $i = 0;
+
         if (($handle = fopen($csvFile, "r")) !== FALSE) {
-            while (($row = fgetcsv($handle, $this->getPacketSize(), $this->getDelimeter())) !== FALSE) {
+            while (($row = fgetcsv($handle, $this->getPacketSize(), $this->getDelimeter(), $this->getStringEnclosure(), $this->getStringEscape())) !== FALSE) {
                 if ($i > $this->getOffset()) {
-                    if( is_callable($callback)){
-                        call_user_func($callback, $row);
-                    }
-                    else{
-                        if( $row != '' ){
+                    if ($row != null && isset($row[0]) && $row[0] !== null ) {
+                        if (is_callable($callback)) {
+                            call_user_func($callback, $row);
+                        } else {
                             $out[] = $row;
                         }
                     }
@@ -120,9 +162,8 @@ class CsvParser
                 $i++;
             }
         }
-        fclose($handle);
 
-        return count($out) > 0 ? $out : null;
+        return $out;
     }
 
 }
