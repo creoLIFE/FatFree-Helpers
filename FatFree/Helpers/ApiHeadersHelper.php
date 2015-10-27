@@ -26,4 +26,12 @@ class ApiHeadersHelper
         header('Content-type: text/javascript');
     }
 
+    /**
+     * @return void
+     */
+    public static function setResponseCode($code)
+    {
+        http_response_code($code);
+    }
+
 }
