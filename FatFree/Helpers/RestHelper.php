@@ -6,11 +6,11 @@
  * Time: 13:32
  */
 
-namespace FatFree\Models;
+namespace FatFree\Helpers;
 
 use FatFree\Helpers\ModelMethodsHelper;
 
-class JsonModel extends ModelMethodsHelper
+class RestHelper extends ModelMethodsHelper
 {
     /*
      * @var integer $status - response status
@@ -95,5 +95,4 @@ class JsonModel extends ModelMethodsHelper
     {
         $this->msg = $msg;
     }
-
 }

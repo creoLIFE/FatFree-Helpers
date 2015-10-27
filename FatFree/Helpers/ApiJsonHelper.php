@@ -12,11 +12,27 @@ use FatFree\Models\JsonModel;
 class ApiJsonHelper
 {
     /*
-     * @var array $data - data object
+     * @var mixed $data - data object
      */
     protected $data;
 
-    public function __construct($data)
+    /*
+     * @var integer $status - data status response code
+     */
+    protected $status;
+
+    /**
+     * @return mixed
+     */
+    public function getData()
+    {
+        return $this->data;
+    }
+
+    /**
+     * @param mixed $data
+     */
+    public function setData($data)
     {
         $this->data = $data;
     }
@@ -24,20 +40,34 @@ class ApiJsonHelper
     /**
      * @return mixed
      */
-    public function asArray()
+    public function getStatus()
     {
-        return $this->data;
+        return $this->status;
     }
 
     /**
-     * @return mixed
+     * @param mixed $status
+     */
+    public function setStatus($status)
+    {
+        $this->status = $status;
+    }
+
+    public function __construct($data)
+    {
+        $this->setData($data);
+        $this->setStatus($data ? 200 : 204);
+    }
+
+    /**
+     * @return JSON
      */
     public function asJson()
     {
         $json = new JsonModel();
-        $json->data = self::asArray();
-        $json->status = $json->data ? 200 : 204;
+        $json->setData($this->getData());
+        $json->setStatus($this->getStatus());
 
-        return json_encode($json);
+        return $json->toJson();
     }
 }
