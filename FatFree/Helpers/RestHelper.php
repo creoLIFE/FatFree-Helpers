@@ -38,7 +38,7 @@ class RestHelper extends ModelMethodsHelper
     public function setData($data)
     {
         $this->data = $data;
-        $this->setStatus($data ? 200 : 204)
+        $this->setStatus($data ? 200 : 204);
     }
 
     /**
