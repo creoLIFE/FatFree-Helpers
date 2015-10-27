@@ -40,7 +40,7 @@ class ModelMethodsHelper
      */
     public function toJson()
     {
-        return json_encode($this);
+        return json_encode(get_object_vars($this));
     }
 
     /**
