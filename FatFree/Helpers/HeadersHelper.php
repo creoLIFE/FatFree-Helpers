@@ -42,7 +42,7 @@ class HeadersHelper
     {
         header("Cache-Control: no-cache, must-revalidate"); //HTTP 1.1
         header("Pragma: no-cache"); //HTTP 1.0
-        header("Expires: " . date("D, d M Y H:i:s e", strtotime('-1 day')); // Date in the past
+        header("Expires: " . date("D, d M Y H:i:s e", strtotime('-1 day'))); // Date in the past
     }
 
     /**
