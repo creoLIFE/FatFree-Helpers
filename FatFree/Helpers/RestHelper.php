@@ -13,6 +13,16 @@ use FatFree\Helpers\ModelMethodsHelper;
 class RestHelper extends ModelMethodsHelper
 {
     /*
+     * @const string ERR_500 - 500 status - server error durring response
+     */
+    const ERR_500 = 'Response error';
+
+    /*
+     * @const string ERR_204 - 204 status - no data
+     */
+    const ERR_204 = 'No data';
+
+    /*
      * @var integer $status - response status
      */
     protected $status = 500;
@@ -96,4 +106,15 @@ class RestHelper extends ModelMethodsHelper
     {
         $this->msg = $msg;
     }
+
+    /**
+     * Class constructor
+     */
+    public function __construct()
+    {
+        $this->setStatus(500);
+        $this->setMsg(self::ERR_500);
+        $this->setData(null);
+    }
+
 }
