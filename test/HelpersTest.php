@@ -1,33 +1,44 @@
 <?php
-ERROR_REPORTING(E_ALL);
+ini_set('error_reporting', E_ALL); // or error_reporting(E_ALL);
+ini_set('display_errors', '1');
+ini_set('display_startup_errors', '1');
+date_default_timezone_set('UTC');
 
-require_once(__DIR__ . '/../vendor/autoload.php');
-require_once(__DIR__ . "/../vendor/bcosca/fatfree/lib/base.php");
-require_once(__DIR__ . '/../FatFree/Helpers/Url.php');
-require_once(__DIR__ . '/../FatFree/Helpers/ModelMethodsHelper.php');
+use FatFree\Helpers\Url;
+use FatFree\Helpers\RouterHelper;
 
 class HelpersTest extends PHPUnit_Framework_TestCase
 {
-    /**
-     * @var view
-     */
-    protected $url;
+    private $f3;
+    private $urlHelper;
+    private $routerHelper;
 
     public function __construct()
     {
-        F3::config(__DIR__ . '/routes.ini');
-        $this->url = new FatFree\Helpers\Url(F3::instance());
+        $this->f3 = \F3::instance();
+        $this->f3->config(__DIR__ . '/routes.ini');
+
+        //Set test alias for routerHelper test
+        $this->f3->set('ALIAS', 'showArticle');
+
+        $this->urlHelper = new Url($this->f3);
+        $this->routerHelper = new RouterHelper($this->f3);
     }
 
     public function testUrl()
     {
-        $this->assertEquals('/',$this->url->get('home'));
+        $this->assertEquals('/', $this->urlHelper->get('home'));
     }
 
     public function testGetModelName()
     {
         $modelMethods = new FatFree\Helpers\ModelMethodsHelper();
-        $this->assertEquals('FatFree\Helpers\ModelMethodsHelper',$modelMethods->getModelName());
+        $this->assertEquals('FatFree\Helpers\ModelMethodsHelper', $modelMethods->getModelName());
+    }
+
+    public function testGetRouterAction()
+    {
+        $this->assertEquals('showAction', $this->routerHelper->getAction());
     }
 
 }
