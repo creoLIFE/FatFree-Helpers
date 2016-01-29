@@ -116,5 +116,4 @@ class RestHelper extends ModelMethodsHelper
         $this->setMsg(self::ERR_500);
         $this->setData(null);
     }
-
 }

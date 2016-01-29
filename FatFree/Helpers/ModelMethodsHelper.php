@@ -8,7 +8,7 @@
 
 namespace FatFree\Helpers;
 
-class ModelMethodsHelper
+class ModelMethodsHelper implements \JsonSerializable
 {
     /**
      * Method return model varibles as array
@@ -37,10 +37,11 @@ class ModelMethodsHelper
     /**
      * Method return model varibles as JSON
      * @return string|JSON
+     * @discontinued
      */
     public function toJson()
     {
-        return json_encode(get_object_vars($this));
+        self::jsonSerialize();
     }
 
     /**
@@ -61,4 +62,20 @@ class ModelMethodsHelper
         return (string)get_class($this);
     }
 
+    /**
+     * Method will use JsonSerializable to serialize varibles to JSON
+     * @return string|JSON
+     */
+    public function jsonSerialize(){
+        return self::fixJsonStructure(json_encode(get_object_vars($this)));
+    }
+
+    /**
+     * Method will fix JSON structure after encoding
+     * @param string|JSON $json
+     * @return string|JSON
+     */
+    private function fixJsonStructure($json){
+        return str_replace(array('\"',':"{','}",'),array('"',':{','},'),$json);
+    }
 }
