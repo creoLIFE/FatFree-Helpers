@@ -70,4 +70,18 @@ class ApiJsonHelper
 
         return $json->toJson();
     }
+
+    /**
+     * @param integer $jsonpId
+     * @return JSON|string
+     */
+    public function asJsonp($jsonpId)
+    {
+        $json = new JsonModel();
+        $json->setData($this->getData());
+        $json->setStatus($this->getStatus());
+
+        return $json->toJsonp((int)$jsonpId);
+    }
+
 }

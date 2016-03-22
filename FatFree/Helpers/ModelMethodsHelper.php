@@ -45,6 +45,17 @@ class ModelMethodsHelper implements \JsonSerializable
     }
 
     /**
+     * Method return model varibles as JSON
+     * #param integer $jsonpId
+     * @return string|JSON
+     * @discontinued
+     */
+    public function toJsonp($jsonpId)
+    {
+        return (string) 'jsonp' . (int)$jsonpId . '(' . self::jsonSerialize() . ');';
+    }
+
+    /**
      * Method return namespace of model
      * @return string
      */
