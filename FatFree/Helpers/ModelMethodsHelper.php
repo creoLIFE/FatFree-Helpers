@@ -41,7 +41,7 @@ class ModelMethodsHelper implements \JsonSerializable
      */
     public function toJson()
     {
-        self::jsonSerialize();
+        return self::jsonSerialize();
     }
 
     /**
