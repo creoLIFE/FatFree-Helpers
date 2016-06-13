@@ -27,48 +27,48 @@ trait DatetimeTriat
     /**
      * @return string
      */
-    public function getCreated()
+    public function getInfoCreated()
     {
-        return $this->created;
+        return $this->info_created;
     }
 
     /**
-     * @param string $created
+     * @param string $info_created
      */
-    public function setCreated($created)
+    public function setInfoCreated($info_created)
     {
-        $this->created = $created;
-    }
-
-    /**
-     * @return string
-     */
-    public function getModified()
-    {
-        return $this->modified;
-    }
-
-    /**
-     * @param string $modified
-     */
-    public function setModified($modified)
-    {
-        $this->modified = $modified;
+        $this->info_created = $info_created;
     }
 
     /**
      * @return string
      */
-    public function getDeleted()
+    public function getInfoModified()
     {
-        return $this->deleted;
+        return $this->info_modified;
     }
 
     /**
-     * @param string $deleted
+     * @param string $info_modified
      */
-    public function setDeleted($deleted)
+    public function setInfoModified($info_modified)
     {
-        $this->deleted = $deleted;
+        $this->info_modified = $info_modified;
+    }
+
+    /**
+     * @return string
+     */
+    public function getInfoDeleted()
+    {
+        return $this->info_deleted;
+    }
+
+    /**
+     * @param string $info_deleted
+     */
+    public function setInfoDeleted($info_deleted)
+    {
+        $this->info_deleted = $info_deleted;
     }
 }
